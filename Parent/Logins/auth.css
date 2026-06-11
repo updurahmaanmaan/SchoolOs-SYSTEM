@@ -1,0 +1,59 @@
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', 'Segoe UI', sans-serif; background: #0f172a; color: #1a1a2e; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    body::before { content: ""; position: fixed; inset: 0; background-image: radial-gradient(circle at 20% 20%, rgba(55,138,221,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(83,75,183,0.12) 0%, transparent 50%); pointer-events: none; }
+    #page { width: 100%; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem 1rem; position: relative; z-index: 1; }
+    .view { display: none; width: 100%; max-width: 460px; }
+    .view.active { display: block; }
+    .welcome-box { text-align: center; }
+    .brand-logo { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 2rem; }
+    .brand-logo .icon { width: 52px; height: 52px; background: linear-gradient(135deg, #378ADD, #185FA5); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+    .brand-logo .name { font-size: 28px; font-weight: 800; color: #fff; letter-spacing: -0.03em; }
+    .brand-logo .name span { color: #378ADD; }
+    .welcome-title { font-size: 32px; font-weight: 800; color: #fff; margin-bottom: 10px; line-height: 1.2; }
+    .welcome-sub { font-size: 16px; color: rgba(255,255,255,0.5); margin-bottom: 2.5rem; }
+    .role-cards { display: flex; flex-direction: column; gap: 14px; margin-bottom: 2rem; }
+    .role-card { background: rgba(255,255,255,0.05); border: 1.5px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 1.25rem 1.5rem; cursor: pointer; transition: all 0.2s; text-align: left; display: flex; align-items: center; gap: 16px; }
+    .role-card:hover { background: rgba(255,255,255,0.09); transform: translateY(-1px); }
+    .role-card .rc-icon { font-size: 28px; flex-shrink: 0; }
+    .role-card .rc-title { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 3px; }
+    .role-card .rc-sub { font-size: 13px; color: rgba(255,255,255,0.45); }
+    .role-card .rc-arrow { margin-left: auto; color: rgba(255,255,255,0.25); font-size: 18px; }
+    .role-card.principal { border-color: rgba(55,138,221,0.3); }
+    .role-card.principal:hover { border-color: #378ADD; background: rgba(55,138,221,0.1); }
+    .role-card.parent { border-color: rgba(83,75,183,0.3); }
+    .role-card.parent:hover { border-color: #534AB7; background: rgba(83,75,183,0.1); }
+    .auth-card { background: #fff; border-radius: 20px; padding: 2rem; box-shadow: 0 32px 80px rgba(0,0,0,0.4); max-height: 90vh; overflow-y: auto; }
+    .auth-back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: #888; cursor: pointer; margin-bottom: 1.5rem; background: none; border: none; padding: 0; font-family: inherit; }
+    .auth-back:hover { color: #185FA5; }
+    .auth-role-badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; margin-bottom: 1rem; }
+    .badge-principal { background: #E6F1FB; color: #185FA5; }
+    .badge-parent { background: #EEEDFE; color: #534AB7; }
+    .auth-title { font-size: 22px; font-weight: 800; color: #1a1a2e; margin-bottom: 4px; }
+    .auth-sub { font-size: 13px; color: #888; margin-bottom: 1.5rem; }
+    .auth-tabs { display: flex; background: #f4f6fa; border-radius: 10px; padding: 4px; margin-bottom: 1.5rem; gap: 4px; }
+    .auth-tab { flex: 1; padding: 8px; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; background: transparent; color: #888; transition: all 0.15s; font-family: inherit; }
+    .auth-tab.active { background: #fff; color: #1a1a2e; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+    .form-section { display: none; }
+    .form-section.active { display: block; }
+    .field { margin-bottom: 1rem; }
+    .field label { display: block; font-size: 12px; font-weight: 700; color: #666; margin-bottom: 5px; }
+    .field input, .field select { width: 100%; padding: 10px 14px; border-radius: 10px; border: 1.5px solid #e5e7eb; font-size: 14px; outline: none; transition: border-color 0.15s; font-family: inherit; background: #fafafa; color: #1a1a2e; }
+    .field input:focus, .field select:focus { border-color: #378ADD; background: #fff; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .btn-auth { width: 100%; padding: 12px; border: none; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.15s; margin-top: 4px; font-family: inherit; }
+    .btn-principal { background: linear-gradient(135deg, #378ADD, #185FA5); color: #fff; }
+    .btn-principal:hover { opacity: 0.92; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(24,95,165,0.35); }
+    .btn-parent { background: linear-gradient(135deg, #7F77DD, #534AB7); color: #fff; }
+    .btn-parent:hover { opacity: 0.92; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(83,75,183,0.35); }
+    .switch-link { text-align: center; font-size: 13px; color: #888; margin-top: 1.25rem; }
+    .switch-link button { background: none; border: none; cursor: pointer; font-size: 13px; font-weight: 700; padding: 0; font-family: inherit; }
+    .switch-link.principal button { color: #185FA5; }
+    .switch-link.parent button { color: #534AB7; }
+    .error-msg { background: #FCEBEB; color: #A32D2D; border-radius: 8px; padding: 8px 12px; font-size: 13px; margin-bottom: 1rem; display: none; }
+    .error-msg.visible { display: block; }
+    .success-msg { background: #EAF3DE; color: #3B6D11; border-radius: 8px; padding: 8px 12px; font-size: 13px; margin-bottom: 1rem; display: none; }
+    .success-msg.visible { display: block; }
+    .auth-footer { text-align: center; margin-top: 1.25rem; font-size: 12px; color: rgba(255,255,255,0.25); }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .view.active { animation: slideUp 0.3s ease; }

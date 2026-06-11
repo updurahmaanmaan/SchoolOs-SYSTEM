@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SchoolOS — Manager Dashboard</title>
+  <link rel="stylesheet" href="SchoolOs.css"/>
+</head>
+<body>
+
+  <div id="app">
+    <!-- ── Sidebar ── -->
+    <aside id="sidebar">
+      <div class="sidebar-brand">
+        <div class="logo">SchoolOS</div>
+        <div class="tagline">Manager panel</div>
+      </div>
+      <nav>
+        <button class="nav-btn active" data-key="dashboard"><span>📊</span> Dashboard</button>
+        <button class="nav-btn" data-key="students"><span>👥</span> Students</button>
+        <button class="nav-btn" data-key="attendance"><span>📅</span> Attendance</button>
+        <button class="nav-btn" data-key="grades"><span>📈</span> Grades</button>
+        <button class="nav-btn" data-key="timetable"><span>🕐</span> Timetable</button>
+        <button class="nav-btn" data-key="classes"><span>🏫</span> Classes</button>
+      </nav>
+      <div class="sidebar-user">
+        <img id="sidebar-profile-image" class="sidebar-profile-image" style="display:none;" alt="School profile"/>
+        <span class="avatar av-blue" id="sidebar-avatar">?</span>
+        <div>
+          <div class="user-name" id="sidebar-name">Loading…</div>
+          <div class="user-role" id="sidebar-school"></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ── Main ── -->
+    <main id="main">
+      <div id="topbar">
+        <div>
+          <h1 id="page-title">Overview</h1>
+          <p id="page-date" class="date"></p>
+        </div>
+        <div id="topbar-actions" class="topbar-actions"></div>
+      </div>
+      <div id="page-content"></div>
+    </main>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="SchoolOs.js"></script>
+</body>
+</html>

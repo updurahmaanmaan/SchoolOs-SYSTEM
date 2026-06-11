@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SchoolOS — Welcome</title>
+  <link rel="stylesheet" href="auth.css"/>
+</head>
+
+<body>
+<div id="page">
+
+  <!-- WELCOME VIEW -->
+  <div class="view active" id="view-welcome">
+    <div class="welcome-box">
+      <div class="brand-logo">
+        <div class="icon">🏫</div>
+        <div class="name">School<span>OS</span></div>
+      </div>
+      <div class="welcome-title">Welcome back</div>
+      <div class="welcome-sub">Choose how you'd like to continue</div>
+      <div class="role-cards">
+        <div class="role-card principal" onclick="goToAuth('principal','login')">
+          <div class="rc-icon">👨‍💼</div>
+          <div><div class="rc-title">Principal / Manager</div><div class="rc-sub">Access the full school management dashboard</div></div>
+          <div class="rc-arrow">→</div>
+        </div>
+        <div class="role-card parent" onclick="goToAuth('parent','login')">
+          <div class="rc-icon">👪</div>
+          <div><div class="rc-title">Parent / Guardian</div><div class="rc-sub">View your child's progress, grades and attendance</div></div>
+          <div class="rc-arrow">→</div>
+        </div>
+      </div>
+      <div class="auth-footer">SchoolOS v1.0 &nbsp;·&nbsp; Data saved locally</div>
+    </div>
+  </div>
+
+  <!-- PRINCIPAL VIEW -->
+  <div class="view" id="view-principal">
+    <div class="auth-card">
+      <button class="auth-back" onclick="goBack()">← Back</button>
+      <div class="auth-role-badge badge-principal">👨‍💼 Principal / Manager</div>
+      <div class="auth-title" id="principal-title">Welcome back</div>
+      <div class="auth-sub" id="principal-sub">Sign in to manage your school</div>
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="ptab-login" onclick="switchTab('principal','login')">Log in</button>
+        <button class="auth-tab" id="ptab-signup" onclick="switchTab('principal','signup')">Sign up</button>
+      </div>
+      <div class="error-msg" id="principal-error"></div>
+      <div class="success-msg" id="principal-success"></div>
+
+      <!-- LOGIN -->
+      <div class="form-section active" id="principal-login-form">
+        <div class="field"><label>Email address</label><input type="email" id="p-login-email" placeholder="principal@school.com"/></div>
+        <div class="field"><label>Password</label><input type="password" id="p-login-pass" placeholder="••••••••"/></div>
+        <button class="btn-auth btn-principal" onclick="handleLogin('principal')">Log in to Dashboard</button>
+        <div class="switch-link principal">Don't have an account? <button onclick="switchTab('principal','signup')">Sign up</button></div>
+      </div>
+
+      <!-- SIGN UP -->
+      <div class="form-section" id="principal-signup-form">
+        <div class="field-row">
+          <div class="field"><label>First name</label><input type="text" id="p-signup-fname" placeholder="Ahmed"/></div>
+          <div class="field"><label>Last name</label><input type="text" id="p-signup-lname" placeholder="Hassan"/></div>
+        </div>
+        <div class="field"><label>School name</label><input type="text" id="p-signup-school" placeholder="e.g. Iftin Secondary School"/></div>
+        <div class="field"><label>Email address</label><input type="email" id="p-signup-email" placeholder="principal@school.com"/></div>
+        <div class="field"><label>Password</label><input type="password" id="p-signup-pass" placeholder="Min. 8 characters"/></div>
+        <div class="field"><label>Confirm password</label><input type="password" id="p-signup-pass2" placeholder="Repeat password"/></div>
+        <button class="btn-auth btn-principal" onclick="handleSignup('principal')">Create account</button>
+        <div class="switch-link principal">Already have an account? <button onclick="switchTab('principal','login')">Log in</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARENT VIEW -->
+  <div class="view" id="view-parent">
+    <div class="auth-card">
+      <button class="auth-back" onclick="goBack()">← Back</button>
+      <div class="auth-role-badge badge-parent">👪 Parent / Guardian</div>
+      <div class="auth-title" id="parent-title">Welcome back</div>
+      <div class="auth-sub" id="parent-sub">Sign in to view your child's progress</div>
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="partab-login" onclick="switchTab('parent','login')">Log in</button>
+        <button class="auth-tab" id="partab-signup" onclick="switchTab('parent','signup')">Sign up</button>
+      </div>
+      <div class="error-msg" id="parent-error"></div>
+      <div class="success-msg" id="parent-success"></div>
+
+      <!-- LOGIN -->
+      <div class="form-section active" id="parent-login-form">
+        <div class="field"><label>Email address</label><input type="email" id="par-login-email" placeholder="parent@email.com"/></div>
+        <div class="field"><label>Password</label><input type="password" id="par-login-pass" placeholder="••••••••"/></div>
+        <button class="btn-auth btn-parent" onclick="handleLogin('parent')">Log in to Portal</button>
+        <div class="switch-link parent">Don't have an account? <button onclick="switchTab('parent','signup')">Sign up</button></div>
+      </div>
+
+      <!-- SIGN UP -->
+      <div class="form-section" id="parent-signup-form">
+        <div class="field-row">
+          <div class="field"><label>First name</label><input type="text" id="par-signup-fname" placeholder="Fatima"/></div>
+          <div class="field"><label>Last name</label><input type="text" id="par-signup-lname" placeholder="Mohamed"/></div>
+        </div>
+        <div class="field"><label>Your child's full name</label><input type="text" id="par-signup-child" placeholder="e.g. Omar Hassan"/></div>
+        <div class="field">
+          <label>Your child's class</label>
+          <input type="text" id="par-signup-class" placeholder="e.g. Form 2A"/>
+        </div>
+        <div class="field"><label>Email address</label><input type="email" id="par-signup-email" placeholder="parent@email.com"/></div>
+        <div class="field"><label>Password</label><input type="password" id="par-signup-pass" placeholder="Min. 8 characters"/></div>
+        <div class="field"><label>Confirm password</label><input type="password" id="par-signup-pass2" placeholder="Repeat password"/></div>
+        <button class="btn-auth btn-parent" onclick="handleSignup('parent')">Create account</button>
+        <div class="switch-link parent">Already have an account? <button onclick="switchTab('parent','login')">Log in</button></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script src="auth.js"></script>
+</body>
+</html>

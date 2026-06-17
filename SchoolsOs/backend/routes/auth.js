@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const auth = require('../middleware/auth');
 
 router.post('/register', async (req,res)=>{
   try{
@@ -10,7 +11,7 @@ router.post('/register', async (req,res)=>{
     const exists = await User.findOne({email}); if(exists) return res.status(400).json({message:'Email exists'});
     const user = new User({name,email,password,schoolName}); await user.save();
     const token = jwt.sign({id:user._id}, process.env.JWT_SECRET||'secret',{expiresIn:'7d'});
-    res.json({user:{id:user._id,name:user.name,email:user.email,schoolName:user.schoolName},token});
+    res.json({user:{id:user._id,name:user.name,email:user.email,schoolName:user.schoolName,language:user.language},token});
   }catch(e){console.error(e);res.status(500).json({message:'Server error'});} 
 });
 
@@ -20,8 +21,24 @@ router.post('/login', async (req,res)=>{
     const user = await User.findOne({email}); if(!user) return res.status(400).json({message:'Invalid credentials'});
     const ok = await user.comparePassword(password); if(!ok) return res.status(400).json({message:'Invalid credentials'});
     const token = jwt.sign({id:user._id}, process.env.JWT_SECRET||'secret',{expiresIn:'7d'});
-    res.json({user:{id:user._id,name:user.name,email:user.email,schoolName:user.schoolName},token});
+    res.json({user:{id:user._id,name:user.name,email:user.email,schoolName:user.schoolName,language:user.language},token});
   }catch(e){console.error(e);res.status(500).json({message:'Server error'});} 
+});
+
+router.get('/me', auth, async (req,res)=>{
+  try{
+    res.json(req.user);
+  }catch(e){console.error(e);res.status(500).json({message:'Server error'});}
+});
+
+router.put('/language', auth, async (req,res)=>{
+  try{
+    const {language} = req.body;
+    if(!language) return res.status(400).json({message:'Language is required'});
+    req.user.language = language;
+    await req.user.save();
+    res.json({message:'Language updated successfully', language: req.user.language});
+  }catch(e){console.error(e);res.status(500).json({message:'Server error'});}
 });
 
 module.exports = router;

@@ -7,6 +7,7 @@ const UserSchema = new mongoose.Schema({
   password: {type:String, required:true},
   role: {type:String, enum:['principal','admin'], default:'principal'},
   schoolName: {type:String, default:''},
+  language: {type:String, default:'en'},
   createdAt: {type:Date, default:Date.now}
 });
 
